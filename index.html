@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="PJMWlbKJPvfOlgarzQFjptCljNThbShxhS8QXm72DY0" />
+    <title>No Coder Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* গ্লোবাল স্টাইল */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* হেডার */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        /* মেইন কন্টেন্ট */
+        .main-content {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* প্রোফাইল সেকশন */
+        .profile-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 25px;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .main-image {
+            z-index: 2;
+            transform: translate(-5px, -5px);
+        }
+
+        .secondary-image {
+            z-index: 1;
+            transform: translate(5px, 5px);
+            filter: grayscale(50%) brightness(90%);
+            opacity: 0.8;
+        }
+        
+        .profile-container:hover .main-image {
+            transform: translate(5px, 5px);
+            filter: grayscale(50%) brightness(90%);
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .profile-container:hover .secondary-image {
+            transform: translate(-5px, -5px);
+            filter: none;
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-info p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* ইনফো সেকশন */
+        .info-section {
+            flex: 2;
+        }
+
+        .info-section h1 {
+            font-size: 36px;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .info-section h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #7f8c8d;
+            font-weight: normal;
+        }
+
+        .info-section p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        
+        .info-section h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        /* দক্ষতার স্টাইল */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills-list li {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .skills-list li:hover {
+            background-color: #2980b9;
+        }
+
+        /* প্রজেক্ট সেকশন */
+        .projects-section {
+            margin-top: 60px;
+        }
+
+        .projects-section h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .project-info p {
+            color: #7f8c8d;
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+        
+        .join-section {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .join-section h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .join-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .join-links a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .join-links a:hover {
+            color: #2980b9;
+        }
+
+        /* রেসপনসিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-section {
+                margin-bottom: 30px;
+            }
+            .info-section ul {
+                text-align: center;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .join-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Mahir Labib</div>
+            <nav>
+                </nav>
+        </header>
+        
+        <section class="main-content">
+            <div class="profile-section">
+                <div class="profile-container">
+                    <img src="https://avatars.githubusercontent.com/u/204073946?v=4" alt="প্রধান প্রোফাইল ছবি" class="profile-image main-image">
+                    
+                    <img src="project-images/no_coder_pro.jpg" alt="বিকল্প প্রোফাইল ছবি" class="profile-image secondary-image">
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://t.me/no_coder_pro"><i class="fab fa-telegram"></i></a>
+                    <a href="https://www.youtube.com/@AniRailexp"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/no.coder.max"><i class="fab fa-facebook"></i></a>
+                </div>
+                
+                <div class="contact-info">
+                    <p>email: islamraisul796@gmail.com
+</p>
+                    <p>Phone: +8801775179605</p>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <h1>Raisul Islam (aka Mahir Labib)</h1>
+                <h2>I just know html and css but love to create projects using AI</h2>
+                
+                <p>Yes, its true i don't know any coding language i use AI to build my projects but one day i will make my own project without taking any help from AI</p>
+                
+                <p>It all started from a friend named Tofazzol Hossain from whom i got inspired to make project like him him knows much more then me but still i try to learn from him and give a better version of his work</p>
+                
+                <h3>Skills</h3>
+                <ul class="skills-list">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>no JavaScript</li>
+                    <li>no React</li>
+                    <li>no Node.js</li>
+                    <li>little Python</li>
+                    <li>little C</li>
+                    <li>little UI Desiginging</li>
+                </ul>
+            </div>
+        </section>
+        
+        <hr>
+        
+        <section class="projects-section">
+            <h3>My Projets</h3>
+            
+            <div class="projects-grid">
+                <a href="https://bbinl.github.io/cc-gen/" class="project-card">
+                    <img src="project-images/cc_generator.png" alt="Classic CC Generator" class="project-image">
+                    <div class="project-info">
+                        <h4>Classic CC Generator</h4>
+                        <p>A Tool To Generate Testing CC Using Advance Luhn Algorithm</p>
+                    </div>
+                </a>
+                
+                <a href="https://bbinl.github.io/cc-checker-faker/" class="project-card">
+                    <img src="project-images/cc_checker.png" alt="CC Checker & Faker" class="project-image">
+                    <div class="project-info">
+                        <h4>CC Checker Faker</h4>
+                        <p>Uses Random Test Getway To Give Valid Testing CC</p>
+                    </div>
+                </a>
+                
+                <a href="https://bbinl.github.io/b3-cc-chkr/" class="project-card">
+                    <img src="project-images/b3_cc_checker.png" alt="B3 CC Checker" class="project-image">
+                    <div class="project-info">
+                        <h4>B3 CC Checker</h4>
+                        <p>Real Braintree Intrigated CC Checker</p>
+                    </div>
+                </a>
+                
+                <a href="https://bbinl.github.io/cc-checker/" class="project-card">
+                    <img src="project-images/checker_top.png" alt="Checker.Top" class="project-image">
+                    <div class="project-info">
+                        <h4>Checker.Top</h4>
+                        <p>A Web Archive Of checker.top Site</p>
+                    </div>
+                </a>
+                
+                <a href="https://bbinl.github.io/gen-chk/" class="project-card">
+                    <img src="project-images/all_gen_check.png" alt="All-in-One Gen & Chk" class="project-image">
+                    <div class="project-info">
+                        <h4>All-in-One Gen & Chk</h4>
+                        <p>All Of My CC Generator And Checker At One Place</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <br>
+        <hr>
+
+        <section class="join-section">
+            <h4>Join for more update</h4>
+            <div class="join-links">
+                <a href="https://t.me/no_coder_xone" target="_blank">Join: @no_coder_xone</a>
+                <a href="https://t.me/bro_bin_lagbe" target="_blank">backup: @bro_bin_lagbe</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
